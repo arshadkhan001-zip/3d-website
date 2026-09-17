@@ -44,7 +44,7 @@ export default function App() {
       <AuthProvider>
       <CartProvider>
         <WishlistProvider>
-          <BrowserRouter>
+          <BrowserRouter basename={import.meta.env.BASE_URL}>
             <ScrollManager />
             <div id="top" className="min-h-screen bg-abyss font-body text-snow">
               <a

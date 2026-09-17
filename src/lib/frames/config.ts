@@ -24,9 +24,9 @@ export function frameFileName(index: number): string {
   return `ezgif-frame-${String(n).padStart(PAD, "0")}.jpg`;
 }
 
-/** Public URL used by <canvas> loader and <link rel=preload>. */
+/** Public URL used by <canvas> loader and <link rel=preload>. Respects Vite base for GitHub Pages. */
 export function frameUrl(index: number): string {
-  return `/frames/${frameFileName(index)}`;
+  return `${import.meta.env.BASE_URL}frames/${frameFileName(index)}`;
 }
 
 /** Frame sequence config consumed by Stage 4 loader/renderer. */
