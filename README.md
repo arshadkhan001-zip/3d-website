@@ -1,4 +1,4 @@
-# Cover King Panipat — precision phone covers & accessories
+#  — precision phone covers & accessories
 
 Cinematic React + Vite + TypeScript storefront (GSAP scroll film, Lenis) wired to
 Supabase (Postgres + Auth + RLS + Edge Functions) for real COD commerce + admin.
