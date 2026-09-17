@@ -1,0 +1,15 @@
+# deps
+node_modules/
+# build
+dist/
+dist-ssr/
+# vite
+*.local
+.env
+# editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+# os
+.DS_Store
+Thumbs.db

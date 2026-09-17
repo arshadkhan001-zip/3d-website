@@ -1,0 +1,189 @@
+@import "tailwindcss";
+
+@theme {
+  /* Dark story — sampled to sit behind the 239 frames */
+  --color-abyss: #05070d;
+  --color-stage: #0a1220;
+  --color-clay: #131c2e;
+  /* Light story — warm, original (not Apple gray) */
+  --color-bone: #ece7db;
+  --color-parchment: #f4f1e8;
+  --color-ink: #10141c;
+  --color-inksoft: #4a5261;
+  /* Product-true neutrals */
+  --color-slate: #7e93b0;
+  --color-mist: #93a0b4;
+  --color-snow: #f4f1e8;
+  /* Accent — ember copper, sparing */
+  --color-ember: #e0762e;
+  --color-emberdeep: #b85a1e;
+  --color-steel: #9db9dd;
+
+  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas,
+    monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Semantic theme tokens — swap via html[data-theme] below */
+  --color-base: var(--t-base);
+  --color-raised: var(--t-raised);
+  --color-fg: var(--t-fg);
+  --color-fgsoft: var(--t-fgsoft);
+  --color-line: var(--t-line);
+}
+
+/* ---------- theme: dark (default, cinematic charcoal) ---------- */
+
+:root {
+  --t-base: #05070d;
+  --t-raised: #0a1220;
+  --t-fg: #f4f1e8;
+  --t-fgsoft: #93a0b4;
+  --t-line: rgba(244, 241, 232, 0.12);
+  color-scheme: dark;
+}
+
+/* ---------- theme: light (warm off-white) ---------- */
+
+html[data-theme="light"] {
+  --t-base: #f3efe6;
+  --t-raised: #fbf9f4;
+  --t-fg: #14181f;
+  --t-fgsoft: #5a6372;
+  --t-line: rgba(20, 24, 31, 0.14);
+  color-scheme: light;
+}
+
+/* ---------- base ---------- */
+
+html {
+  background-color: #05070d;
+  scroll-behavior: smooth;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  background: var(--t-base);
+  color: var(--t-fg);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* clip (not hidden): kills horizontal scroll without breaking sticky */
+  overflow-x: clip;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::selection {
+  background: rgba(224, 118, 46, 0.35);
+  color: #f4f1e8;
+}
+
+/* ---------- layout primitives ---------- */
+
+.ds-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+.ds-section {
+  padding-block: 96px;
+}
+@media (min-width: 1024px) {
+  .ds-section {
+    padding-block: 144px;
+  }
+}
+
+.ds-hairline-b {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.ds-hairline-b-light {
+  border-bottom: 1px solid rgba(16, 20, 28, 0.12);
+}
+
+/* Technical annotation label — echoes frame callouts ("Left Side") */
+.ds-annotation {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+/* ---------- accessibility ---------- */
+
+:focus {
+  outline: none;
+}
+:focus-visible {
+  outline: 2px solid var(--color-ember);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Visible only for screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- hero (static, Stage 3) ---------- */
+
+.hero-scroll-line {
+  animation: hero-scroll-pulse 2.6s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+@keyframes hero-scroll-pulse {
+  0%,
+  100% {
+    transform: scaleY(0.55);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+/* Hide scrollbars on horizontal filter rails (still scrollable + keyboard ok) */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
